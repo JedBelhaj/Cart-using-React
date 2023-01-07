@@ -9,7 +9,7 @@ const NavBar = ({totalCounters}) => {
         <div className="container-fluid">
           <a className="navbar-brand">React App</a>
           <span className="badge m-2 text-bg-secondary">
-            {totalCounters}
+            Total: {totalCounters}
           </span>
         </div>
       </nav>

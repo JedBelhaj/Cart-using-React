@@ -7,7 +7,7 @@ class Counters extends Component {
   render() {
     const {onReset, counters, onDelete, onIncrement }= this.props;
     return (
-      <div>
+      <div className="container flex-column d-flex align-items-center">
         <button className="btn btn-primary m-2" onClick={onReset}>
           Reset All
         </button>

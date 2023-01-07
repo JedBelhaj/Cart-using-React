@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import NavBar from "./components/navbar";
 import Counters from "./components/counters";
+import Products from "./components/products";
 
 class App extends Component {
   state = {
-    counters: [
-      { id: 1, value: 0 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 },
+    counters: [],
+    prods: [
+      { id: 1, pName: "T-shirt" },
+      { id: 2, pName: "Gloves" },
+      { id: 3, pName: "Sneakers" },
+      { id: 4, pName: "Coat" },
     ],
   };
 
@@ -18,13 +20,32 @@ class App extends Component {
     //u can directly use this.state = this.props.smthn
     //but you need to add props as arg to constructor and super
     //;)
-    console.log('app constructor')
+    console.log("app constructor");
   }
   componentDidMount() {
     // ajax call & get data from a server
     // setState({})
-    console.log('app mount')
+    console.log("app mount");
   }
+
+  handleAddToCard = (product) => {
+    const products = [...this.state.prods];
+    let counters = [...this.state.counters];
+    const countLen = counters.length;
+    let newId;
+    countLen > 0 ? (newId = counters[countLen - 1].id + 1) : (newId = 1);
+    if (counters.filter((c) => c.prodName === product.pName).length === 0) {
+      this.setState({ counters });
+      counters.push({
+        id: newId,
+        value: 1,
+        prodName: product.pName,
+      });
+    } else {
+      counters.filter((c) => c.prodName === product.pName)[0].value++;
+      this.setState({ counters });
+    }
+  };
 
   handleIncrement = (counter) => {
     const counters = [...this.state.counters];
@@ -47,18 +68,20 @@ class App extends Component {
     this.setState({ counters });
   };
   render() {
-    console.log('app render')
+    console.log("app render");
     return (
       <React.Fragment>
         <NavBar
           totalCounters={this.state.counters.filter((c) => c.value > 0).length}
         />
+        <Products prods={this.state.prods} onAdd={this.handleAddToCard} />
         <main className="container">
           <Counters
             counters={this.state.counters}
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}
             onDelete={this.handleDelete}
+            onAdd={this.handleAddToCard}
           />
         </main>
       </React.Fragment>

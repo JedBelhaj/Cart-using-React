@@ -11,10 +11,11 @@ class Counter extends Component {
     //cleanup before an element unmounts
     //useful to avoid memory leaks
   }
-
+  
   render() {
     return (
-      <div className>
+      <div>
+        <span>{this.props.counter.prodName}</span>
         <span className={this.getBadgeClasses()}>{this.formatValue()}</span>
         <button
           onClick={() => this.props.onIncrement(this.props.counter)}
