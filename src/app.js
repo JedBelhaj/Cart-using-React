@@ -11,6 +11,8 @@ class App extends Component {
       { id: 2, pName: "Gloves" },
       { id: 3, pName: "Sneakers" },
       { id: 4, pName: "Coat" },
+      { id: 5, pName: "Hat" },
+      { id: 6, pName: "Boots" },
     ],
   };
 
