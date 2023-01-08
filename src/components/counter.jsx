@@ -43,7 +43,9 @@ class Counter extends Component {
     classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
-
+//this was used for learning purposes
+//its unused now since the counters are limited to a minimum value of 1
+// to see the result add manually a value of 0 in app.js to the counters array
   formatValue() {
     const { value } = this.props.counter;
     return value === 0 ? "Zero" : value;
