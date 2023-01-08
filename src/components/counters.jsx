@@ -5,8 +5,8 @@ class Counters extends Component {
     const { onReset, counters, onDelete, onIncrement, onDecrement } =
       this.props;
     return (
-      <div className="container flex-column d-flex align-items-center">
-        <h2>Your Cart</h2>
+      <div className="container flex-column d-flex align-items-center border">
+        <h2 className="mt-5">Your Cart</h2>
         {counters.length > 0 ? (
           counters.map((counter) => (
             <Counter
@@ -18,7 +18,7 @@ class Counters extends Component {
             />
           ))
         ) : (
-            <h5>Your cart is emtpy.</h5>
+          <h5>Your cart is emtpy.</h5>
         )}
         <button className="btn btn-danger my-5" onClick={onReset}>
           Delete All
