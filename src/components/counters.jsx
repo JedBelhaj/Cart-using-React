@@ -11,14 +11,7 @@ class Counters extends Component {
         <div
           id="cart"
           className="flex-column d-flex align-items-center border m-3"
-          style={{
-            maxWidth: 400,
-            zIndex: 2,
-            backgroundColor: "whitesmoke",
-            position: "fixed",
-            right: 0,
-            borderRadius: 20,
-          }}
+          style={this.props.style}
         >
           {counters.length > 0 ? (
             counters.map((counter) => (

@@ -8,6 +8,15 @@ class App extends Component {
   //here added to the state of the app the props of bouth the counters and the prods
   //so we can pass eventHandlers to from to components not having parent-child relationship
   state = {
+    style: {
+      opacity: 1,
+      maxWidth: 400,
+      zIndex: 2,
+      backgroundColor: "whitesmoke",
+      position: "fixed",
+      right: 0,
+      borderRadius: 20,
+    },
     cart: 0,
     counters: [],
     prods: [
@@ -38,6 +47,11 @@ class App extends Component {
   handleCart = () => {
     let cartNew = 0;
     this.state.cart === 0 ? (cartNew = 1) : (cartNew = 0);
+    if (cartNew === 1) {
+      let style = { ...this.state.style };
+      style.opacity = 0;
+      setTimeout(() => this.setState({ style }), 1000);
+    }
     this.setState({ cart: cartNew });
   };
 
@@ -114,6 +128,7 @@ class App extends Component {
           onDelete={this.handleDelete}
           onAdd={this.handleAddToCard}
           cart={this.state.cart}
+          style={this.state.style}
         />
         <Products prods={this.state.prods} onAdd={this.handleAddToCard} />
         <main className="container"></main>
