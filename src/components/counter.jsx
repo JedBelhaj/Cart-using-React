@@ -6,15 +6,13 @@ class Counter extends Component {
       // example: ajax call and get new data from the server
     }
   }
-
   componentWillUnmount() {
     //cleanup before an element unmounts
     //useful to avoid memory leaks
   }
-  
   render() {
     return (
-      <div>
+      <div className="m-2">
         <span>{this.props.counter.prodName}</span>
         <span className={this.getBadgeClasses()}>{this.formatValue()}</span>
         <button
@@ -30,7 +28,7 @@ class Counter extends Component {
           -
         </button>
         <button
-          onClick={ () => this.props.onDelete(this.props.counter.id) }
+          onClick={() => this.props.onDelete(this.props.counter.id)}
           className="mx-1 btn btn-danger btn-sm m-1"
         >
           Delete
@@ -43,9 +41,9 @@ class Counter extends Component {
     classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
-//this was used for learning purposes
-//its unused now since the counters are limited to a minimum value of 1
-// to see the result add manually a value of 0 in app.js to the counters array
+  //this was used for learning purposes
+  //its unused now since the counters are limited to a minimum value of 1
+  // to see the result add manually a value of 0 in app.js to the counters array
   formatValue() {
     const { value } = this.props.counter;
     return value === 0 ? "Zero" : value;

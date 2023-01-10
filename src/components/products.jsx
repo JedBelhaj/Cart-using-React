@@ -4,7 +4,7 @@ class Products extends Component {
   render() {
     // the .map() methode is used to set the values of each product child from the prods array prop
     return (
-      <div className="container-sm my-5">
+      <div className="container-sm" style={{ padding: 20 }}>
         <div className="row justify-content-center">
           {this.props.prods.map((product) => (
             <Product

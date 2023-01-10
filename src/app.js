@@ -8,6 +8,7 @@ class App extends Component {
   //here added to the state of the app the props of bouth the counters and the prods
   //so we can pass eventHandlers to from to components not having parent-child relationship
   state = {
+    cart: 0,
     counters: [],
     prods: [
       { id: 1, pName: "T-shirt" },
@@ -32,7 +33,13 @@ class App extends Component {
     // setState({})
     console.log("app mount");
   }
-//eventHandlers
+  //eventHandlers
+
+  handleCart = () => {
+    let cartNew = 0;
+    this.state.cart === 0 ? (cartNew = 1) : (cartNew = 0);
+    this.setState({ cart: cartNew });
+  };
 
   handleAddToCard = (product) => {
     // adding new elemnt to the counters array in the state
@@ -72,13 +79,15 @@ class App extends Component {
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
     counters[index] = { ...counter };
-    counters[index].value > 1 ? counters[index].value-=1 : counters[index].value=counters[index].value ;
+    counters[index].value > 1
+      ? (counters[index].value -= 1)
+      : (counters[index].value = counters[index].value);
     this.setState({ counters });
   };
 
   handleReset = () => {
     // resets the counters array to an empty one then overrides the state
-    const counters = []
+    const counters = [];
     this.setState({ counters });
   };
 
@@ -95,18 +104,19 @@ class App extends Component {
       <React.Fragment>
         <NavBar
           totalCounters={this.state.counters.filter((c) => c.value > 0).length}
+          onCart={this.handleCart}
+        />
+        <Counters
+          counters={this.state.counters}
+          onReset={this.handleReset}
+          onDecrement={this.handleDecrement}
+          onIncrement={this.handleIncrement}
+          onDelete={this.handleDelete}
+          onAdd={this.handleAddToCard}
+          cart={this.state.cart}
         />
         <Products prods={this.state.prods} onAdd={this.handleAddToCard} />
-        <main className="container">
-          <Counters
-            counters={this.state.counters}
-            onReset={this.handleReset}
-				onDecrement={this.handleDecrement}
-            onIncrement={this.handleIncrement}
-            onDelete={this.handleDelete}
-            onAdd={this.handleAddToCard}
-          />
-        </main>
+        <main className="container"></main>
       </React.Fragment>
     );
   }
