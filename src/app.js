@@ -9,7 +9,6 @@ class App extends Component {
   //so we can pass eventHandlers to from to components not having parent-child relationship
   state = {
     style: {
-      opacity: 1,
       maxWidth: 400,
       zIndex: 2,
       backgroundColor: "whitesmoke",
